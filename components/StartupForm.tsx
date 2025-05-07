@@ -19,6 +19,12 @@ const StartupForm = ()=> {
     const {toast} = useToast()
     const router = useRouter();
 
+    toast({
+        title:"Success",
+        description:"Your startup pitch has been created sucessfully",
+        variant:"default",
+    });
+
     const handelFormSubmit = async(prevState : any, formData: FormData) => {
         try{
             const formValues = {
@@ -34,11 +40,7 @@ const StartupForm = ()=> {
             const result = await createPitch(prevState, formData, pitch);
 
             if(result.status ==="SUCCESS"){
-                toast({
-                    title:"Success",
-                    description:"Your startup pitch has been created sucessfully",
-                    variant:"default",
-                })
+
                 router.push(`/startup/${result._id}`);
             }
 
@@ -76,9 +78,7 @@ const StartupForm = ()=> {
         error:"",
         status:"INITIAL",
     })
-
     
-
   return (
     <form action={formAction}className="startup-form">
         <div>
